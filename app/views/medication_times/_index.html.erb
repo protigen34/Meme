@@ -1,0 +1,11 @@
+<div class="card" id="medication-times">
+  <h5 class="card-header bg-primary text-white">Times</h5>
+  <div class="card-body p-0">
+    <ul class="list-group border-0">
+      <%= render :partial => 'medication_times/show', :collection => @medication.times, :as => :mt %>
+    </ul>
+  </div>
+  <div class="card-footer bg-info border-top" id="new-medication-time-card">
+    <%= link_to 'New Medication Time', new_medication_time_path(@medication, :format => :js), :remote => true, :class => [ 'active', 'text-white' ] %>
+  </div>
+</div>

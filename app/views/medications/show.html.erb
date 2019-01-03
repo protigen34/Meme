@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-8">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Directions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><%= @medication.name %></th>
+          <th><%= @medication.quantity %></td>
+          <td><%= @medication.unit %></td>
+          <td><%= @medication.directions %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-4">
+    <%= render :partial => 'medication_times/index', :medication => @medication %>
+  </div>
+</div>
+<%= link_to 'Edit', edit_medication_path(@medication) %> |
+<%= link_to 'Back', medications_path %>

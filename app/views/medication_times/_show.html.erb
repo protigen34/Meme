@@ -1,0 +1,7 @@
+<%= content_tag :li, :class => ['list-group-item', 'border-0', 'medication-time-row'], :id => "medication-time-id-#{mt.id}" do %>
+  <%= mt.time_of_day.strftime('%-I:%M %p') %> on <%= mt.selected_flags('day_of_week').map { |day| dow_to_abbrev(day) }.join(', ') %>
+  <%= link_to medication_time_path(@medication, mt, :format => :js), :data => { :confirm => 'Are you sure you want to delete this?' }, :remote => true, :method => :delete, :class => [ 'badge', 'badge-secondary' ] do %>
+    <!--i class="fas fa-calendar-times"></i-->
+    Delete
+  <% end %>
+<% end %>

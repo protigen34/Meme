@@ -1,0 +1,9 @@
+@import '~bootstrap/scss/bootstrap';
+$material-font-path: "../fonts";
+//@import '~bootstrap-material-design/scss/bootstrap-material-design';
+@import '~bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker-bs4';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~toastr/toastr';
+body {
+  padding-top: 5rem;
+}

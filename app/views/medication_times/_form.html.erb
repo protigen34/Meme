@@ -1,0 +1,22 @@
+
+<%= simple_form_for(@medication_time, :remote => true) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :day_of_week do %>
+      <div class="btn-group btn-group-toggle" data-toggle="buttons" aria-label="Days of Week">
+        <% MedicationTime.flag_keys('day_of_week').each do |day| %>
+          <%= f.input_field day, :as => :hidden, :value => 0 %>
+          <%= f.input_field day, :as => :boolean, :boolean_style => :nested, :include_hidden => false, :boolean_label_class => 'btn btn-info', :inline_label => true, :label => day.to_s.chars[0].upcase %>
+        <% end %>
+      </div>
+      <%= f.full_error :day_of_week, :tag => 'div', :class => 'invalid-feedback d-block' %>
+    <% end %>
+    <%= f.input :time_of_day, :as => :string %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

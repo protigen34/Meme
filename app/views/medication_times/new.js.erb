@@ -1,0 +1,22 @@
+(function() {
+  let mt = $('#medication-times');
+  let mt_list = mt.find('ul');
+  let new_mt_link = mt.find('#new-medication-time-card');
+  let current_form = mt.find('#new_medication_time');
+  let new_mt = $("<%= j render :partial => 'medication_times/new', :medication => @medication, :medication_time => @medication_time %>");
+  if (current_form.length == 0) {
+    new_mt_link.replaceWith(new_mt);
+  } else {
+    $('#medication_time_time_of_day').bootstrapMaterialDatePicker('destroy');
+    current_form.replaceWith(new_mt);
+  }
+  $('#medication_time_time_of_day').bootstrapMaterialDatePicker({
+    format: 'h:mm a',
+    shortTime: true,
+    date: false,
+    time: true,
+    monthPicker: false,
+    year: false,
+    switchOnClick: true
+  });
+})();

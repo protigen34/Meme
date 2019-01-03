@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Immediately exit script on first error
+set -e -o pipefail
+
+APP_ROOT_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+cd "${APP_ROOT_FOLDER}"
+
+if [ -n "${C9_USER}" ]; then
+  # We are in a Cloud9 machine
+
+  # Make sure that Postgres is running
+  #sudo service postgresql status || sudo service postgresql start
+
+  # Adapt the configuration of the webpack-dev-server
+  export APP_DOMAIN="${C9_HOSTNAME}"
+  export RAILS_SERVER_BINDING='0.0.0.0'
+  export RAILS_SERVER_PORT='8080'
+  export WEBPACKER_DEV_SERVER_PORT='8082'
+  export WEBPACKER_DEV_SERVER_HTTPS='true'
+  export WEBPACKER_DEV_SERVER_HOST="localhost"
+  export WEBPACKER_DEV_SERVER_PUBLIC="${C9_HOSTNAME}:${WEBPACKER_DEV_SERVER_PORT}"
+  export WEBPACKER_DEV_SERVER_HMR='false'
+  export WEBPACKER_DEV_SERVER_INLINE='false'
+  export WEBPACKER_DEV_SERVER_OVERLAY='true'
+  export WEBPACKER_DEV_SERVER_DISABLE_HOST_CHECK='true'
+  export WEBPACKER_DEV_SERVER_USE_LOCAL_IP='false'
+fi
+
+foreman start -f Procfile.dev

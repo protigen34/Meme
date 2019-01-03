@@ -1,0 +1,5 @@
+(function () {
+  let list = $('#medication-times').find('ul');
+  let new_mt = "<%= j render :partial => 'medication_times/show', :locals => { :mt => @medication_time } %>";
+  list.append(new_mt);
+})();
