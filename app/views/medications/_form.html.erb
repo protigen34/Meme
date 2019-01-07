@@ -6,7 +6,7 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :quantity %>
-    <%= f.input :unit %>
+    <%= f.input :unit, :as => :select, :collection => ['mg', 'mL', 'tabs', 'caps', 'pills']%>
     <%= f.input :directions %>
   </div>
 
